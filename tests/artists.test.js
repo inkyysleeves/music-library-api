@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const Artist = require('../src/models/artist.js');
+const Artist = require('../src/models/artist');
 
 describe('/artists', () => {
   afterEach((done) => {
@@ -44,7 +44,7 @@ describe('/artists', () => {
     });
 
     describe('GET /artists', () => {
-      xit('gets all artist records', (done) => {
+      it('gets all artist records', (done) => {
         chai.request(server)
           .get('/artists')
           .end((err, res) => {
