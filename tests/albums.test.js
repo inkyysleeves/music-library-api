@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const Artist = require('../src/models/artist');
-const Album = require('../src/models/album');
+const Album = require('../src/models/album.js');
 
 describe('/albums', () => {
   let artist;
