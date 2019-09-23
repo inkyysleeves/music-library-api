@@ -24,3 +24,23 @@ exports.find = (req, res) => {
     }
   });
 };
+exports.update = (req, res) => {
+  Artist.findById(req.params.artistId, (error, artist) => {
+    if (!artist) {
+      res.status(404).json({ error: 'This artist could not be found.' });
+    } else {
+      if (req.body.genre) {
+        artist.genre = req.body.genre;
+      }
+      if (req.body.name) {
+        artist.name = req.body.name;
+      }
+      artist.save().then(() => {
+        res.status(200).send(artist);
+      });
+      // Artist.update({ _id: artistId }, { $set: { genre: req.body.genre } }, (updatedArtist) => {
+      //   res.status(200).send(updatedArtist);
+      // });
+    }
+  });
+};

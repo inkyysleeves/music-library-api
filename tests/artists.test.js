@@ -89,8 +89,9 @@ describe('/artists', () => {
     });
 
     describe('PATCH /artists/:artistId', () => {
-      xit('updates artist record by id', (done) => {
+      it('updates artist record by id', (done) => {
         const artist = artists[0];
+        console.log(artist);
         chai.request(server)
           .patch(`/artists/${artist._id}`)
           .send({ genre: 'Psychedelic Rock' })
@@ -104,14 +105,14 @@ describe('/artists', () => {
           });
       });
 
-      xit('returns a 404 if the artist does not exist', (done) => {
+      it('returns a 404 if the artist does not exist', (done) => {
         chai.request(server)
           .patch('/artists/12345')
           .send({ genre: 'Psychedelic Rock' })
           .end((err, res) => {
             expect(err).to.equal(null);
             expect(res.status).to.equal(404);
-            expect(res.body.error).to.equal('Artist not found');
+            expect(res.body.error).to.equal('This artist could not be found.');
             done();
           });
       });
