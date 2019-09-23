@@ -63,7 +63,7 @@ describe('/artists', () => {
     });
 
     describe('GET /artist/:artistId', () => {
-      xit('gets artist record by id', (done) => {
+      it('gets artist record by id', (done) => {
         const artist = artists[0];
         chai.request(server)
           .get(`/artists/${artist._id}`)
@@ -76,13 +76,13 @@ describe('/artists', () => {
           });
       });
 
-      xit('returns a 404 if the artist does not exist', (done) => {
+      it('returns a 404 if the artist does not exist', (done) => {
         chai.request(server)
           .get('/artists/12345')
           .end((err, res) => {
             expect(err).to.equal(null);
             expect(res.status).to.equal(404);
-            expect(res.body.error).to.equal('The artist could not be found.');
+            expect(res.body.error).to.equal('Artist not found');
             done();
           });
       });
@@ -111,7 +111,7 @@ describe('/artists', () => {
           .end((err, res) => {
             expect(err).to.equal(null);
             expect(res.status).to.equal(404);
-            expect(res.body.error).to.equal('The artist could not be found.');
+            expect(res.body.error).to.equal('Artist not found');
             done();
           });
       });

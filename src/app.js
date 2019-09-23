@@ -1,15 +1,14 @@
 const express = require('express');
-const bodyparser = require('body-parser');
-
-const artistControllers = require('./controller/artist');
 
 const app = express();
 
-app.use(express.json());
+// const bodyparser = require('body-parser');
 
-// app.get('*', (req, res) => {
-//   res.status(200).json({ message: 'Hello World!' });
-// });
+const artistControllers = require('./controller/artist');
+
+app.use(express.json());
 app.post('/artists', artistControllers.create);
 app.get('/artists', artistControllers.list);
+app.get('/artists/:artistId', artistControllers.find);
+
 module.exports = app;
