@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 const Artist = require('../models/artist');
 
 exports.create = (req, res) => {
@@ -41,6 +42,15 @@ exports.update = (req, res) => {
       // Artist.update({ _id: artistId }, { $set: { genre: req.body.genre } }, (updatedArtist) => {
       //   res.status(200).send(updatedArtist);
       // });
+    }
+  });
+};
+exports.delete = (req, res) => {
+  Artist.findById(req.params.artistId, (error, artistdelete) => {
+    if (!artistdelete) {
+      res.status(404).json({ error: 'The artist could not be found.' });
+    } else {
+      artistdelete.delete().then(() => res.status(204).send());
     }
   });
 };
